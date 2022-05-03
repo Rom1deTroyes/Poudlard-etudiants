@@ -1,0 +1,4 @@
+{"_id":{"$oid":"62711fbfe5491b20efcb90c0"},"nom":"Malefoy","prenom":"Drago","age":10,"classe":"Première"}
+{"_id":{"$oid":"62712a454a932aa5acafccd1"},"nom":"Potter","prenom":"Harry","age":"9","classe":"Première"}
+{"_id":{"$oid":"6271303af5d7a9933be7468a"},"nom":"Granger","prenom":"Hermione","age":16,"classe":"Première"}
+{"_id":{"$oid":"6271303af5d7a9933be7468c"},"nom":"Longdubat","prenom":"Neville","age":17,"classe":"Première"}

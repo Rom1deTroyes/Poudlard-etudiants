@@ -33,6 +33,8 @@ class DataAccess :
         cls.connexion()
         etudiants = list(cls.etudiants.find({}))
         cls.deconnexion()
+        for etudiant in etudiants:
+            etudiant['_id'] = str(etudiant['_id'])
         return etudiants
     
     @classmethod
