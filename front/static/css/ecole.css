@@ -1,0 +1,69 @@
+  
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+  }
+  
+h1{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#page{
+    display:flex;
+    flex-direction: column;
+}
+
+  .form-signin {
+    width: 80%;
+    margin: auto;
+    padding: 15px;
+  }
+
+  .form-signin-heading, .form-control, .form-button{
+    margin:0;
+    margin-bottom: 1em;
+  }
+
+  .form-control, .form-button {
+    height: 100% !important;
+    box-sizing: border-box;
+    font-size: 1.1em;
+
+  }
+
+  .form-control:focus {
+    z-index: 2;
+  }
+
+  #liste, #clavier {
+    width: 80%;
+    margin: auto;
+    padding: 15px;
+  }
+
+  .list-group-item{
+    padding: 10px;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+  }
+
+  #etudiant{
+      text-decoration: none;
+        color:cadetblue;
+  }
+
+  fieldset{
+    border:black solid 1px;
+    border-radius: 2px;
+    text-align: center;
+    padding: 0.5em;
+  }
+  .bi{
+      text-align: right;
+  }
+
+  .bi:hover{
+    color:crimson;
+  }

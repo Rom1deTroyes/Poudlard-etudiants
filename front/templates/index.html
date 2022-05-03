@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Ecole</h1>
+
+    <div id="page">
+        <div id="liste">
+            <h2>Liste des étudiants</h2>
+            <ul class="list-group">
+                {% for etudiant in etudiants : %}
+                <li class="list-group-item"> <a href="{{url_for('get_etudiant', id=etudiant['_id'])}}" id="etudiant">{{etudiant['nom']}} {{etudiant['prenom']}} - {{etudiant['classe']}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div id="clavier">
+        <fieldset>
+            <a href="{{url_for('add_etudiant')}}" class="btn btn-lg btn-primary btn-block form-button" id="inscription">Inscription</a>
+        </fieldset>
+    </div>
+{% endblock %}
