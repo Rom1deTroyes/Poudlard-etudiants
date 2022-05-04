@@ -1,5 +1,6 @@
 GIT_SHA1 = $(shell git rev-parse --verify HEAD)
 IMAGES_TAG = ${shell git describe --exact-match --tags 2> /dev/null || echo 'latest'}
+DOCKERHUB_OWNER = rom1detroyes
 IMAGE_PREFIX = poudlard-etudiants-
 
 IMAGE_DIRS = $(wildcard back front nginx)
