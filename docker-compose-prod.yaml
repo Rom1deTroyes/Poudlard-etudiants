@@ -1,0 +1,55 @@
+# Use root/root as user/password credentials
+#version: '3.1'
+version: '3.8'
+
+services:
+  front:
+    image: rom1detroyes/poudlard-etudiants-front:latest
+    environment:
+      - APP_NAME=MyDockerFlask
+      - DATA_URL=http://back:8080
+    depends_on:
+      - back
+
+  back:
+    image: rom1detroyes/poudlard-etudiants-back:latest
+    environment:
+      - MONGODB_URL=mongodb://root:root@mongo:27017/
+    depends_on:
+      - mongo
+
+  nginx:
+    image: rom1detroyes/poudlard-etudiants-nginx:latest
+    container_name: poudlard-etudiants-nginx
+    ports:
+      - 80:80
+    depends_on:
+      - front
+
+  mongo:
+    image: mongo
+    volumes:
+    - mongodb-data:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
