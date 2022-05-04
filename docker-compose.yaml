@@ -1,25 +1,55 @@
-# Use root/example as user/password credentials
-version: '3.1'
+version: "3.7"
 
 services:
 
-  mongo:
-    image: mongo
-    container_name: 'mongodb'
-    volumes:
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - mongodb-data:/data/db
-    ports:
-      - '27017-27019:27017-27019'
+  front:
+    build: ./front
+    container_name: poudlard-etudiants-front
     restart: always
     environment:
-      MONGO_INITDB_DATABASE: admin
+      - APP_NAME=MyDockerFlask
+      - FLASK_DEBUG=1
+      - DATA_URL=http://back:8080
+    expose:
+      - 8080
+    depends_on:
+      - back
+  
+  back:
+    build: ./back
+    container_name: poudlard-etudiants-back
+    restart: always
+    environment:
+      - APP_NAME=MyDockerFlask
+      - FLASK_DEBUG=1
+      - MONGODB_URL=mongodb://root:root@mongo:27017/
+    expose:
+      - 8080
+    depends_on:
+      - mongo
+  
+  nginx:
+    build: ./nginx
+    container_name: poudlard-etudiants-nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - front
+
+  mongo:
+    image: mongo
+    volumes:
+    - mongodb-data:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+    environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
 
   mongo-express:
     image: mongo-express
-    container_name: 'mongo-express'
     restart: always
     depends_on:
       - mongo
