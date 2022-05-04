@@ -1,9 +1,10 @@
 import requests
 import json
+import os
 
 
 class DataAccess :
-    DATA_URL = 'http://localhost:5000'
+    DATA_URL = os.environ['DATA_URL']
 
     @classmethod
     def connexion(cls) :
